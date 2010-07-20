@@ -1,2 +1,5 @@
-==== accepts-flattened-values 1.0.0
+==== accepts-flattened-values 0.1.1
+* renamed accepts-flattened-values.rb so it won't be auto required
+
+==== accepts-flattened-values 0.1.0
 * Initial version

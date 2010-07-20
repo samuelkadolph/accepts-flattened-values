@@ -1,0 +1,27 @@
+== accepts-flattened-values
+
+accepts-flattenved-values is a mixin for ActiveRecord to be used on any model with a has_many or
+has_and_belongs_to_many association. The primary purpose of this mixin is to simplify a tag like association for any
+model or association.
+
+== Getting Started
+
+
+== Example
+
+    create_table :users do { |t| t.string :name, :null => false }
+    create_table :interests do { |t| t.string :value, :null => false }
+    create_table :interests_users, :id => false { |t| t.references :interest; t.references :user }
+
+    class User < ActiveRecord::Base
+      accepts_flattened_values_for :interests
+    end
+
+    u = User.create(:name => "Sam")
+    u.interests.create(:value => "ruby")
+    u.interests.create(:value => "ruby on rails")
+    u.interests.create(:value => "soccer")
+
+    u.interests_values # => "ruby,ruby on rails,soccer"
+    u.interests_values = "ruby,soccer,whatever"
+    u.interests # => [#<Interest value: "ruby">, <Interest value: "soccer">, <Interest value: "whatever">]

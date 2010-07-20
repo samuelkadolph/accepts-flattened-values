@@ -11,7 +11,7 @@ end
 
 desc 'Install gem'
 task :install => :gem do
-  system('gem install pkg/accepts-flattened-values-0.1.0.gem --no-ri --no-rdoc')
+  system('gem install pkg/accepts-flattened-values-0.1.1.gem --no-ri --no-rdoc')
 end
 
 desc 'Release to gemcutter'
