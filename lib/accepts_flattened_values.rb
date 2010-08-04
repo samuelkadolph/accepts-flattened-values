@@ -1,7 +1,9 @@
 require 'active_support'
 
 module AcceptsFlattenedValues
-  autoload :Mixin, 'accepts_flattened_values/mixin'
+  extend ActiveSupport::Autoload
+
+  autoload :Mixin
 end
 
 ActiveSupport.on_load(:active_record) do

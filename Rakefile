@@ -3,7 +3,7 @@ require 'rake'
 require 'rake/packagetask'
 require 'rake/gempackagetask'
 
-version = File.read(File.expand_path(__FILE__, '../VERSION')).strip
+version = File.read(File.expand_path('../VERSION', __FILE__)).strip
 spec    = eval(File.read('accepts-flattened-values.gemspec'))
 
 Rake::GemPackageTask.new(spec) do |p|
