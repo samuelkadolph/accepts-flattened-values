@@ -19,6 +19,6 @@ Gem::Specification.new do |s|
   s.rdoc_options    << '--main' << 'README'
   s.extra_rdoc_files = ['CHANGELOG', 'LICENSE', 'README']
 
-  s.add_dependency('activesupport', '>=3.0.0.rc')
-  s.add_dependency('activerecord',  '>=3.0.0.rc')
+  s.add_dependency('activesupport')
+  s.add_dependency('activerecord')
 end
