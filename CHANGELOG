@@ -1,3 +1,6 @@
+==== accepts-flattened-values 0.1.2
+* updated gemspec to use activerecord and activesupport 3.0.0.rc
+
 ==== accepts-flattened-values 0.1.1
 * renamed accepts-flattened-values.rb so it won't be auto required
 
