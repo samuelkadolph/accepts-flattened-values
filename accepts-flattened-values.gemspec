@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
 
   s.author   = 'Samuel Kadolph'
   s.email    = 'samuel@kadolph.com'
-  s.homepage = 'http://wiki.github.com/samuelkadolph/accepts-flattened-values/'
+  s.homepage = 'http://github.com/samuelkadolph/accepts-flattened-values/wiki'
 
   s.files        = Dir['CHANGELOG', 'LICENSE', 'README', 'lib/**/*']
   s.require_path = 'lib'
