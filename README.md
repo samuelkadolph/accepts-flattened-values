@@ -53,7 +53,7 @@ user.interests.create!(value: "starcraft")
 user.interests_values # => "ruby,ruby on rails,starcraft"
 
 user.interests_values = "ruby,battlefield"
-user.interests # => [#<Interest value: "ruby">, <Interest value: "battlefield">]
+user.interests # => [#<Interest value: "ruby">, #<Interest value: "battlefield">]
 
 <%= form_for @user do |f| %>
   <%= f.label :interests_values %>:
