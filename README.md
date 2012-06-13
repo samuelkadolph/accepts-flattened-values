@@ -24,9 +24,14 @@ Or install it yourself as:
 ## Usage
 
 ```ruby
+require "accepts-flattened-values"
+
 create_table(:users) { |t| t.string :name }
 create_table(:interests) { |t| t.string :value }
-create_table(:interests_users, id: false) { |t| t.references :interest; t.references :user }
+create_table(:interests_users, id: false) do |t|
+  t.references :interest
+  t.references :user
+end
 
 class Interest < ActiveRecord::Base
   attr_accessible :value
