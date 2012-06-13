@@ -1,24 +1,17 @@
-version = File.read(File.expand_path('../VERSION', __FILE__)).strip
+require File.expand_path("../.gemspec", __FILE__)
+require File.expand_path("../lib/accepts-flattened-values/version", __FILE__)
 
-Gem::Specification.new do |s|
-  s.platform    = Gem::Platform::RUBY
-  s.name        = 'accepts-flattened-values'
-  s.version     = version
-  s.summary     = 'accepts-flattened-values is an ActiveRecord mixin to flatten a habtm assocation.'
-  s.description = 'accepts-flattened-values is mixin for ActiveRecord that flattens single values from a ' +
-                  'has_many or has_and_belongs_to_many assocation into a string and vice versa.'
+Gem::Specification.new do |gem|
+  gem.name        = "accepts-flattened-values"
+  gem.authors     = ["Samuel Kadolph"]
+  gem.email       = ["samuel@kadolph.com"]
+  gem.description = readme.description
+  gem.summary     = readme.summary
+  gem.homepage    = "http://samuelkadolph.github.com/accepts-flattened-values/"
+  gem.version     = AcceptsFlattenedValues::VERSION
 
-  s.author   = 'Samuel Kadolph'
-  s.email    = 'samuel@kadolph.com'
-  s.homepage = 'http://github.com/samuelkadolph/accepts-flattened-values/wiki'
+  gem.files       = Dir["lib/**/*"]
+  gem.test_files  = Dir["test/**/*_test.rb"]
 
-  s.files        = Dir['CHANGELOG', 'LICENSE', 'README', 'lib/**/*']
-  s.require_path = 'lib'
-
-  s.has_rdoc         = true
-  s.rdoc_options    << '--main' << 'README'
-  s.extra_rdoc_files = ['CHANGELOG', 'LICENSE', 'README']
-
-  s.add_dependency('activesupport')
-  s.add_dependency('activerecord')
+  gem.add_dependency "activesupport", "~> 3.2"
 end

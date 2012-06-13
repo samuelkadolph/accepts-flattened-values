@@ -1,23 +1,3 @@
-require 'rubygems'
-require 'rake'
-require 'rake/packagetask'
-require 'rake/gempackagetask'
+#!/usr/bin/env rake
 
-version = File.read(File.expand_path('../VERSION', __FILE__)).strip
-spec    = eval(File.read('accepts-flattened-values.gemspec'))
-
-Rake::GemPackageTask.new(spec) do |p|
-  p.gem_spec = spec
-end
-
-desc 'Install gem'
-task :install => :gem do
-  system("gem install pkg/accepts-flattened-values-#{version}.gem --no-ri --no-rdoc")
-end
-
-desc 'Release to gemcutter'
-task :release => :package do
-  require 'rake/gemcutter'
-  Rake::Gemcutter::Tasks.new(spec).define
-  Rake::Task['gem:push'].invoke
-end
+require "bundler/gem_tasks"
