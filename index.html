@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>accepts-flattened-values by samuelkadolph</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="without-description">
+        <h1>accepts-flattened-values</h1>
+        <p></p>
+        <p class="view"><a href="https://github.com/samuelkadolph/accepts-flattened-values">View the Project on GitHub <small>samuelkadolph/accepts-flattened-values</small></a></p>
+        <ul>
+          <li><a href="https://github.com/samuelkadolph/accepts-flattened-values/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/samuelkadolph/accepts-flattened-values/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/samuelkadolph/accepts-flattened-values">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>accepts-flattened-values</h1>
+
+<p>accepts-flattened-values is an ActiveRecord mixin to flatten a <code>has_many</code> or <code>has_and_belongs_to_many</code> assocation.</p>
+
+<h2>Description</h2>
+
+<p>accepts-flattened-values is a mixin for ActiveRecord to be used on any model with a <code>has_many</code> or <code>has_and_belongs_to_many</code>
+association. The purpose of this mixin is to simplify a tag like association for any model or association.</p>
+
+<h2>Installation</h2>
+
+<p>Add this line to your application's Gemfile:</p>
+
+<pre><code>gem "accepts-flattened-values"
+</code></pre>
+
+<p>And then execute:</p>
+
+<pre><code>$ bundle
+</code></pre>
+
+<p>Or install it yourself as:</p>
+
+<pre><code>$ gem install accepts-flattened-values
+</code></pre>
+
+<h2>Usage</h2>
+
+<div class="highlight">
+<pre><span class="nb">require</span> <span class="s2">"accepts-flattened-values"</span>
+
+<span class="n">create_table</span><span class="p">(</span><span class="ss">:users</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span> <span class="n">t</span><span class="o">.</span><span class="n">string</span> <span class="ss">:name</span> <span class="p">}</span>
+<span class="n">create_table</span><span class="p">(</span><span class="ss">:interests</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span> <span class="n">t</span><span class="o">.</span><span class="n">string</span> <span class="ss">:value</span> <span class="p">}</span>
+<span class="n">create_table</span><span class="p">(</span><span class="ss">:interests_users</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="kp">false</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+  <span class="n">t</span><span class="o">.</span><span class="n">references</span> <span class="ss">:interest</span>
+  <span class="n">t</span><span class="o">.</span><span class="n">references</span> <span class="ss">:user</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">Interest</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">attr_accessible</span> <span class="ss">:value</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="kp">include</span> <span class="no">AcceptsFlattenedValues</span>
+
+  <span class="n">attr_accessible</span> <span class="ss">:name</span>
+
+  <span class="n">has_and_belongs_to_many</span> <span class="ss">:interests</span>
+  <span class="n">accepts_flattened_values_for</span> <span class="ss">:interests</span>
+<span class="k">end</span>
+
+<span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">create!</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">"Sam"</span><span class="p">)</span>
+<span class="n">user</span><span class="o">.</span><span class="n">interests</span><span class="o">.</span><span class="n">create!</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="s2">"ruby"</span><span class="p">)</span>
+<span class="n">user</span><span class="o">.</span><span class="n">interests</span><span class="o">.</span><span class="n">create!</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="s2">"ruby on rails"</span><span class="p">)</span>
+<span class="n">user</span><span class="o">.</span><span class="n">interests</span><span class="o">.</span><span class="n">create!</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="s2">"starcraft"</span><span class="p">)</span>
+<span class="n">user</span><span class="o">.</span><span class="n">interests_values</span> <span class="c1"># =&gt; "ruby,ruby on rails,starcraft"</span>
+
+<span class="n">user</span><span class="o">.</span><span class="n">interests_values</span> <span class="o">=</span> <span class="s2">"ruby,battlefield"</span>
+<span class="n">user</span><span class="o">.</span><span class="n">interests</span> <span class="c1"># =&gt; [#&lt;Interest value: "ruby"&gt;, #&lt;Interest value: "battlefield"&gt;]</span>
+
+<span class="o">&lt;</span><span class="sx">%= form_for @user do |f| %&gt;</span>
+<span class="sx">  &lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">label</span> <span class="ss">:interests_values</span> <span class="sx">%&gt;:</span>
+<span class="sx">  &lt;%= f.text_field :interests_values %&gt;</span>
+<span class="o">&lt;</span><span class="sx">% end </span><span class="o">%&gt;</span>
+</pre>
+</div>
+
+
+<h2>Contributing</h2>
+
+<p>Fork, branch &amp; pull request.</p>
+      </section>
+    </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/samuelkadolph">samuelkadolph</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-32629715-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
