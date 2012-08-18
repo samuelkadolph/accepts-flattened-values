@@ -1,3 +1,5 @@
+[![Build Status](https://secure.travis-ci.org/samuelkadolph/accepts-flattened-values.png?branch=master)](http://travis-ci.org/samuelkadolph/accepts-flattened-values)
+
 # accepts-flattened-values
 
 accepts-flattened-values is an ActiveRecord mixin to flatten a `has_many` or `has_and_belongs_to_many` assocation.
