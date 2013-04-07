@@ -16,15 +16,21 @@ association. The purpose of this mixin is to simplify a tag like association for
 
 Add this line to your application's Gemfile:
 
-    gem "accepts-flattened-values"
+```ruby
+gem "accepts-flattened-values"
+```
 
 And then execute:
 
-    $ bundle install
+```
+$ bundle install
+```
 
 Or install it yourself as:
 
-    $ gem install accepts-flattened-values
+```
+$ gem install accepts-flattened-values
+```
 
 ## Usage
 
