@@ -17,6 +17,6 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency "activesupport", "~> 3.2"
 
-  gem.add_development_dependency "mocha", "~> 0.12.1"
+  gem.add_development_dependency "mocha", "~> 0.13.3"
   gem.add_development_dependency "rake", "~> 0.9.2.2"
 end
