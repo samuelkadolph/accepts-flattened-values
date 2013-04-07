@@ -1,4 +1,7 @@
 [![Build Status](https://secure.travis-ci.org/samuelkadolph/accepts-flattened-values.png?branch=master)](http://travis-ci.org/samuelkadolph/accepts-flattened-values)
+[![Gem Version](https://badge.fury.io/rb/accepts-flattened-values.png)](http://badge.fury.io/rb/accepts-flattened-values)
+[![Dependency Status](https://gemnasium.com/samuelkadolph/accepts-flattened-values.png)](https://gemnasium.com/samuelkadolph/accepts-flattened-values)
+[![Code Climate](https://codeclimate.com/github/samuelkadolph/accepts-flattened-values.png)](https://codeclimate.com/github/samuelkadolph/accepts-flattened-values)
 
 # accepts-flattened-values
 
