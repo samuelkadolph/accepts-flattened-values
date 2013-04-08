@@ -15,7 +15,7 @@ module AcceptsFlattenedValues
   module ClassMethods
     def accepts_flattened_values_for(*attr_names)
       options = { :separator => ",", :attribute => :value }
-      options.update(attr_names.extract_options!)
+      options.merge!(attr_names.extract_options!)
       options.assert_valid_keys(:separator, :attribute)
 
       attr_names.each do |association_name|

@@ -53,18 +53,25 @@ describe AcceptsFlattenedValues do
           @relation1.expects(:first_or_initialize).returns(@value1)
           @relation2 = mock()
           @relation2.expects(:first_or_initialize).returns(@value2)
-          @klass.expects(:where).with(value: "hi").returns(@relation1)
-          @klass.expects(:where).with(value: "mom").returns(@relation2)
         end
 
         it "should split the string into the association" do
+          @klass.expects(:where).with(value: "hi").returns(@relation1)
+          @klass.expects(:where).with(value: "mom").returns(@relation2)
           @instance.expects(:pirates=).with([@value1, @value2])
           @instance.pirates_values = "hi,mom"
         end
 
-        it "should split the string into the association with custom attribtue"
+        it "should split the string into the association with custom attribute" do
+          @klass.expects(:where).with(name: "hi").returns(@relation1)
+          @klass.expects(:where).with(name: "mom").returns(@relation2)
+          @instance.expects(:mateys=).with([@value1, @value2])
+          @instance.mateys_values = "hi,mom"
+        end
 
         it "should split the string into the association with custome separator" do
+          @klass.expects(:where).with(value: "hi").returns(@relation1)
+          @klass.expects(:where).with(value: "mom").returns(@relation2)
           @instance.expects(:scallywags=).with([@value1, @value2])
           @instance.scallywags_values = "hi&mom"
         end
